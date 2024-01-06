@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Video.module.css';
 import Input from '@/components/Input';
 import Message from '@/components/Message';
+import Call from './Call'
 
 const Video = () => {
     return (
@@ -10,8 +11,7 @@ const Video = () => {
 
                 {/* left side */}
                 <div className={`flex-[30%] flex items-center justify-center flex-col w-full gap-2 ${styles.video_chat}`}>
-                    <div className='bg-gray-300 rounded-md h-1/2 w-full'>video1</div>
-                    <div className='bg-gray-300 rounded-md h-1/2 w-full'>video2</div>
+                    <Call />
                 </div>
 
                 {/* right side */}

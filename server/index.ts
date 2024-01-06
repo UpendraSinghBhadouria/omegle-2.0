@@ -1,16 +1,20 @@
-import express, { Application } from "express";
+import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
-import dotenv from "dotenv";
+import dotenv from 'dotenv'
+import peerRoute from './routes/peer'
 
 dotenv.config();
-const PORT:(number | string) = process.env.PORT || 8000;
-console.log(PORT);
-const app:Application = express();
 
+const app: Application = express()
 
-app.use(cors());
+const port = 8000
+
 app.use(express.json());
+app.use(cors());
+
+app.use('/api/peer', peerRoute)
 
 
-app.listen(PORT,
-    ()=>console.log(`App is listening on http://localhost:${PORT}`));
+app.listen(port, function () {
+    console.log(`App is listening on port ${port} !`)
+})
