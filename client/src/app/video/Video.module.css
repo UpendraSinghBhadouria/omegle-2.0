@@ -1,0 +1,7 @@
+.video_chat {
+    height: calc(100vh - 82px);
+}
+
+.chat{
+    height: calc(100% - 108px);
+}
