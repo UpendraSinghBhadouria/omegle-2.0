@@ -35,6 +35,7 @@ const login = () => {
       dispatch(loginFailure());
     }
   }
+
   return (
     <div className='login'>
       <Navbar />
@@ -59,7 +60,7 @@ const login = () => {
             />
             <button>Login</button>
           </form>
-      
+
           <p>You don't have an account?
             <Link href={"/register"} className='link'> Register</Link>
           </p>

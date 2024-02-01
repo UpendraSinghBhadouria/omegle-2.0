@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     roomId: null,
-    user: null,
     message: '',
     messageList: []
 }
@@ -19,13 +18,10 @@ const roomSlice = createSlice({
         },
         setMessageList: (state, action) => {
             state.messageList = [...state.messageList, action.payload];
-        },
-        setUser: (state, action) => {
-            state.user = action.payload;
         }
     }
 })
 
-export const { setRoomId, setMessage, setMessageList, setUser } = roomSlice.actions;
+export const { setRoomId, setMessage, setMessageList } = roomSlice.actions;
 
 export default roomSlice.reducer;

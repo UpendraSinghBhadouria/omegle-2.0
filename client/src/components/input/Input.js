@@ -6,38 +6,31 @@ import Image from 'next/image';
 import AttachImg from '../../assets/attach.png';
 import Img from '../../assets/img.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMessage, setMessageList, setUser } from '@/redux/features/roomSlice';
+import { setMessage, setMessageList } from '@/redux/features/roomSlice';
 
 const Input = ({ socket }) => {
-    const [enteredMessage,setEnteredMessage] = useState(''); 
-    // const { message, setMessage, setMessageList, roomId, user, setUser } = useContext(RoomContext);
-    const { roomId, user } = useSelector(state => state.room);
+    const [enteredMessage, setEnteredMessage] = useState('');
+    const { roomId } = useSelector(state => state.room);
+    const {currentUser} = useSelector(state => state.user); 
     const dispatch = useDispatch();
 
     const inputChangeHandler = (event) => {
         setEnteredMessage(event.target.value);
     }
 
-    useEffect(() => {
-        const username = prompt("Enter your name..");
-        // setUser(username)
-        dispatch(setUser(username));
-    }, [])
-
     const sendMessaage = async () => {
         const messageData = {
             room: roomId,
-            username: user,
-            message:enteredMessage
+            username: currentUser.name,
+            userImg:currentUser.img,
+            message: enteredMessage
         }
 
         await socket.emit("send_message", messageData);
-        // setMessageList((prev) => [...prev, messageData]);
         dispatch(setMessageList(messageData));
         dispatch(setMessage(enteredMessage));
+        setEnteredMessage('');
     }
-
-
 
     return (
         <div className='input'>

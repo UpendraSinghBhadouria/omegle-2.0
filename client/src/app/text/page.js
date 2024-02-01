@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './text.scss';
 import Navbar from '@/components/navbar/Navbar';
 import Message from '@/components/message/Message';
@@ -8,36 +8,16 @@ import Input from '@/components/input/Input';
 import { io } from "socket.io-client";
 import { useDispatch, useSelector } from 'react-redux';
 import { setMessageList, setRoomId } from '@/redux/features/roomSlice';
+import SocketContext from '@/context/socket';
 
 const Text = () => {
 
-  // const { messageList, setMessageList, setRoomId } = useContext(RoomContext);
   const { messageList } = useSelector(state => state.room);
   const dispatch = useDispatch();
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    const socketInstance = io("http://localhost:8000");
-    setSocket(socketInstance);
-  }, [])
-
-  useEffect(() => {
-    socket?.emit('joinRoom');
-
-    socket?.on("getRoomId", (roomId) => {
-      dispatch(setRoomId(roomId));
-    })
-
-    return () => {
-      socket?.disconnect();
-    }
-  }, [socket])
-
-
+  const { socket } = useContext(SocketContext);
 
   useEffect(() => {
     socket?.on("receive_message", (data) => {
-      //  setMessageList((prev)=>[...prev,data]);
       dispatch(setMessageList(data));
     })
   }, [socket])

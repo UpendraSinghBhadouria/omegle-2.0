@@ -8,15 +8,16 @@ import { useSelector } from 'react-redux';
 
 const Message = ({ messageContent }) => {
 
-    // const { user } = useContext(RoomContext);
 
-    const { user } = useSelector(state => state.room);
+    const { currentUser } = useSelector(state => state.user);
 
     return (
-        <div className={`message ${user === messageContent?.username && 'owner'}`}>
+        <div className={`message ${currentUser?.name === messageContent?.username && 'owner'}`}>
             <div className="messageInfo">
                 <Image
-                    src={AvatarImg}
+                    src={currentUser?.name === messageContent?.username ?
+                        currentUser?.img : messageContent?.userImg
+                    }
                     className='img'
                     height={40}
                     width={40}

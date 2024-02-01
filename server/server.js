@@ -99,6 +99,11 @@ io.on("connection", (socket) => {
         console.log(rooms)
     });
 
+    socket.on("joinVideoRoom", ({ roomId, id }) => {
+        console.log(`A new user ${id} joined the room ${roomId}`)
+        socket.join(roomId);
+        socket.broadcast.to(roomId).emit("userConnected",id)
+    })
     function generateRoomId() {
         // Implement a proper room ID generation logic
         return Math.random().toString(36).substring(7);
