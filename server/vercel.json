@@ -12,7 +12,7 @@
         "dest": "server/routes/auth.js"
       },
       {
-        "src": "/api/user/(.*)",
+        "src": "/api/users/(.*)",
         "dest": "server/routes/user.js"
       },
       {
