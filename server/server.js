@@ -21,7 +21,7 @@ const io = new Server(server, {
 });
 
 app.get("/",(req,res)=>{
-    return res.status(200).json("Server is running")
+    res.status(200).json("Server is running")
 })
 
 // middlewares
