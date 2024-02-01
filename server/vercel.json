@@ -1,15 +1,30 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "server.js",
-            "use": "@vercel/node"
-        }
+      {
+        "src": "server/**/*.js",
+        "use": "@vercel/node"
+      }
     ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "server.js"
-        }
-    ]
-}
+      {
+        "src": "/api/auth/(.*)",
+        "dest": "server/routes/auth.js"
+      },
+      {
+        "src": "/api/user/(.*)",
+        "dest": "server/routes/user.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "server/$1"
+      }
+    ],
+    "functions": {
+      "api/**/*.js": {
+        "runtime": "vercel-node@2",
+        "maxDuration": 20
+      }
+    }
+  }
+  
