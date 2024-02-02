@@ -11,7 +11,7 @@ import { storage } from '@/firebase/firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useRouter } from 'next/navigation';
 
-const signup = () => {
+const Register = () => {
 
     const [enteredValues, setEnteredValues] = useState({
         name: '',
@@ -71,7 +71,8 @@ const signup = () => {
     }
 
     useEffect(() => {
-        file && uploadFile()
+        file && uploadFile();
+        // eslint-disable-next-line
     }, [file])
 
     const handleSubmit = async (event) => {
@@ -139,4 +140,4 @@ const signup = () => {
     )
 }
 
-export default signup
+export default Register

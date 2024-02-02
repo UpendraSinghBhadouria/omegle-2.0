@@ -96,6 +96,7 @@ const Video = () => {
     socket?.on("receive_message", (data) => {
       dispatch(setMessageList(data));
     })
+    // eslint-disable-next-line
   }, [socket])
 
   return (

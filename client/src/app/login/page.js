@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginFailure, loginStart, loginSuccess } from '@/redux/features/userSlice';
 
-const login = () => {
+const Login = () => {
   const [enteredValues, setEnteredValues] = useState({
     email: '',
     password: '',
@@ -61,7 +61,7 @@ const login = () => {
             <button>Login</button>
           </form>
 
-          <p>You don't have an account?
+          <p>{"You don't have an account?"}
             <Link href={"/register"} className='link'> Register</Link>
           </p>
         </div>
@@ -70,4 +70,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login

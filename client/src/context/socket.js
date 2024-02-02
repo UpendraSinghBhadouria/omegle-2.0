@@ -20,12 +20,13 @@ export const SocketContextProvider = ({ children }) => {
 
         socket?.on("getRoomId", (roomId) => {
             dispatch(setRoomId(roomId));
-            console.log({roomId})
+            console.log({ roomId })
         })
 
         return () => {
             socket?.disconnect();
         }
+        // eslint-disable-next-line
     }, [socket])
     return (
         <SocketContext.Provider value={{ socket }}>
