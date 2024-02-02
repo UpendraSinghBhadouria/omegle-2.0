@@ -26,7 +26,7 @@ const login = () => {
     dispatch(loginStart());
     try {
       const { email, password } = enteredValues;
-      const res = await axios.post("http://localhost:8000/api/auth/login", {
+      const res = await axios.post("https://omegle-2-0.onrender.com/api/auth/login", {
         email, password
       });
       dispatch(loginSuccess(res.data));

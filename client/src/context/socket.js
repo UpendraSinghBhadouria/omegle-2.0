@@ -11,7 +11,7 @@ export const SocketContextProvider = ({ children }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const socketInstance = io("http://localhost:8000");
+        const socketInstance = io("https://omegle-2-0.onrender.com");
         setSocket(socketInstance);
     }, [])
 
@@ -20,6 +20,7 @@ export const SocketContextProvider = ({ children }) => {
 
         socket?.on("getRoomId", (roomId) => {
             dispatch(setRoomId(roomId));
+            console.log({roomId})
         })
 
         return () => {
