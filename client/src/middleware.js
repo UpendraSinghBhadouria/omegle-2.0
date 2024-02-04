@@ -6,10 +6,10 @@ export function middleware(request) {
     const token = allCookies.find((cookie) => cookie.name === "access_token")?.value
     console.log(token)
 
-    if (token) {
-        return NextResponse.next();
-    }
-    return NextResponse.redirect(new URL('/login', request.url));
+    // if (token) {
+    //     return NextResponse.next();
+    // }
+    // return NextResponse.redirect(new URL('/login', request.url));
 }
 
 export const config = {
