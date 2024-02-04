@@ -79,7 +79,7 @@ const Register = () => {
         event.preventDefault();
         try {
             const { name, email, password, img } = enteredValues;
-            const res = await axios.post("https://omegle-2-0.onrender.com/api/auth/register", {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/register`, {
                 name, email, password, img
             });
             console.log(res.data);

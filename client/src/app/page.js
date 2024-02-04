@@ -5,8 +5,11 @@ import Image from 'next/image'
 import HomeImg from '../assets/Home.png'
 import "./App.scss";
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 export default function Home() {
+
+  const { roomId } = useSelector(state => state.room);
   return (
     <div className="home">
       <Navbar />
@@ -21,7 +24,11 @@ export default function Home() {
             <h3>Start chatting :</h3>
             <div className="chat_btns">
               <div className="video_btn">
-                <Link href="/video" className='link'>Video</Link>
+                <Link
+                  href={`/video/${roomId}`}
+                  className='link'>
+                  Video
+                </Link>
               </div>
               <div className="text_btn">
                 <Link

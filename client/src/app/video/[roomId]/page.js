@@ -117,7 +117,6 @@ const Video = () => {
                 </div>
               )
             })}
-            {/* <div className="stranger_video">2</div> */}
           </div>
         </div>
         <div className="right">

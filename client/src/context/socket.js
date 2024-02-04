@@ -11,7 +11,7 @@ export const SocketContextProvider = ({ children }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const socketInstance = io("https://omegle-2-0.onrender.com");
+        const socketInstance = io(`${process.env.NEXT_PUBLIC_BASE_URL}`);
         setSocket(socketInstance);
     }, [])
 
@@ -29,7 +29,7 @@ export const SocketContextProvider = ({ children }) => {
         // eslint-disable-next-line
     }, [socket])
     return (
-        <SocketContext.Provider value={{ socket }}>
+        <SocketContext.Provider value={{ socket,setSocket }}>
             {children}
         </SocketContext.Provider>
     )

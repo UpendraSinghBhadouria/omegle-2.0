@@ -20,13 +20,16 @@ const io = new Server(server, {
     }
 });
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
     res.status(200).json("Server is running")
 })
 
 // middlewares
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin: 'https://omegle-2.vercel.app',
+    credentials: true
+}));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
@@ -105,7 +108,7 @@ io.on("connection", (socket) => {
     socket.on("joinVideoRoom", ({ roomId, id }) => {
         console.log(`A new user ${id} joined the room ${roomId}`)
         socket.join(roomId);
-        socket.broadcast.to(roomId).emit("userConnected",id)
+        socket.broadcast.to(roomId).emit("userConnected", id)
     })
     function generateRoomId() {
         // Implement a proper room ID generation logic

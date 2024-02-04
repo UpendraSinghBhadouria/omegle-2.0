@@ -7,6 +7,7 @@ import './login.scss';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginFailure, loginStart, loginSuccess } from '@/redux/features/userSlice';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [enteredValues, setEnteredValues] = useState({
@@ -14,6 +15,7 @@ const Login = () => {
     password: '',
   })
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleChange = (event) => {
     setEnteredValues((prev) => {
@@ -26,10 +28,13 @@ const Login = () => {
     dispatch(loginStart());
     try {
       const { email, password } = enteredValues;
-      const res = await axios.post("https://omegle-2-0.onrender.com/api/auth/login", {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/login`, {
         email, password
+      }, {
+        withCredentials: true
       });
       dispatch(loginSuccess(res.data));
+      router.push("/");
       console.log(res.data)
     } catch (error) {
       dispatch(loginFailure());
