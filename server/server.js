@@ -23,7 +23,7 @@ const io = new Server(server, {
 // middlewares
 app.use(cookieParser());
 app.use(cors({
-    origin: 'https://omegle-2.vercel.app',
+    origin: 'https://localhost:3000',
     credentials: true
 }));
 app.use(express.json());
