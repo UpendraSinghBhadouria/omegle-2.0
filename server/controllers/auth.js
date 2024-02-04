@@ -30,7 +30,9 @@ export const login = async (req, res, next) => {
 
         res.cookie("access_token", token, {
             httpOnly: true,
-            secure: true
+            secure: true,
+            domain: 'omegle-2.vercel.app',
+            path: '/',
         }).status(200).json(otherDetails);
 
     } catch (error) {

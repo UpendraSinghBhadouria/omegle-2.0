@@ -20,10 +20,6 @@ const io = new Server(server, {
     }
 });
 
-app.get("/", (req, res) => {
-    res.status(200).json("Server is running")
-})
-
 // middlewares
 app.use(cookieParser());
 app.use(cors({
@@ -32,6 +28,9 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+    res.status(200).json("Server is running")
+})
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 
@@ -115,7 +114,6 @@ io.on("connection", (socket) => {
         return Math.random().toString(36).substring(7);
     }
 })
-
 
 
 
