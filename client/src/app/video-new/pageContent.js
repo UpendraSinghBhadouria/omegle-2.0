@@ -8,7 +8,7 @@ import {
 import { useSocketContext } from "@/context/socket";
 
 export default function PageContent() {
-  const [isSidebar, setIsSidebar] = useState(true);
+  const [isSidebar, setIsSidebar] = useState(false);
 
   return (
     <div className="h-screen w-screen flex gap-4 p-4 bg-white">
@@ -28,19 +28,15 @@ export default function PageContent() {
             </button>
           </nav>
         </header>
-        {/* videos */}
-        <div className="relative flex-1">
+        {/* videos container */}
+        <div className="relative h-[calc(100vh-60px-48px)]">
           {/* stranger video screen */}
-          <div className="h-full w-full bg-gray-100 border rounded-xl">
-            <video autoPlay muted loop>
-              <source src="/videos/video-1.mp4" type="video/mp4" />
-            </video>
+          <div className="h-full w-full overflow-hidden bg-gray-100 border border-gray-300 rounded-xl">
+            <VideoPlayer src="https://www.w3schools.com/tags/movie.mp4" />
           </div>
           {/* my video screen */}
-          <div className="absolute bottom-4 right-4 w-[320px] h-[200px] bg-white border rounded-xl">
-            <video autoPlay muted loop>
-              <source src="/videos/video-2.mp4" type="video/mp4" />
-            </video>
+          <div className="overflow-hidden w-[320px] h-[200px] absolute bottom-4 right-4 bg-gray-100 border border-gray-300 rounded-xl  shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+            <VideoPlayer src="https://www.w3schools.com/tags/movie.mp4" />
           </div>
         </div>
       </div>
@@ -56,6 +52,12 @@ export default function PageContent() {
         </div>
       </div>
     </div>
+  );
+}
+
+function VideoPlayer({ src }) {
+  return (
+    <video className="h-full w-full object-cover" src={src} autoPlay></video>
   );
 }
 
