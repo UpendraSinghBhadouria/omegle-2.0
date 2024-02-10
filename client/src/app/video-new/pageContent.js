@@ -1,6 +1,10 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { IoImageOutline, IoSend } from "react-icons/io5";
+import {
+  IoChatboxEllipsesOutline,
+  IoImageOutline,
+  IoSend,
+} from "react-icons/io5";
 import { useSocketContext } from "@/context/socket";
 
 export default function PageContent() {
@@ -13,9 +17,14 @@ export default function PageContent() {
         {/* header */}
         <header className="h-[60px] flex items-center px-3 bg-gray-100 border rounded-xl">
           <nav className="w-full flex items-center justify-end">
-            <button onClick={() => setIsSidebar(!isSidebar)}>
-              {" "}
-              {isSidebar ? "Hide Sidebar" : "Show Sidebar"}{" "}
+            <div className="mr-auto">
+              <h1 className="font-semibold"> InterrVU. </h1>
+            </div>
+            <button
+              className={`p-2 rounded-lg bg-blue-100 hover:bg-blue-200 ${isSidebar ? "text-blue-800" : "text-black"}`}
+              onClick={() => setIsSidebar(!isSidebar)}
+            >
+              <IoChatboxEllipsesOutline size={20} />
             </button>
           </nav>
         </header>
